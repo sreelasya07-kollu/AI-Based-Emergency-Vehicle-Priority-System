@@ -1,0 +1,39 @@
+{
+  "intersections": {
+    "A": {"lat": 17.385, "lng": 78.486, "name": "Intersection A"},
+    "B": {"lat": 17.390, "lng": 78.490, "name": "Intersection B"},
+    "C": {"lat": 17.395, "lng": 78.495, "name": "Intersection C"},
+    "D": {"lat": 17.400, "lng": 78.500, "name": "Intersection D"},
+    "Hospital": {"lat": 17.405, "lng": 78.505, "name": "City Hospital"},
+    "Fire_Station": {"lat": 17.388, "lng": 78.482, "name": "Central Fire Station"},
+    "Police_HQ": {"lat": 17.392, "lng": 78.488, "name": "Police Headquarters"}
+  },
+  "roads": [
+    {"from": "A", "to": "B", "distance_km": 1.2, "signals": 1},
+    {"from": "B", "to": "C", "distance_km": 1.0, "signals": 1},
+    {"from": "C", "to": "Hospital", "distance_km": 0.8, "signals": 1},
+    {"from": "A", "to": "C", "distance_km": 2.5, "signals": 2},
+    {"from": "A", "to": "D", "distance_km": 1.5, "signals": 1},
+    {"from": "D", "to": "Hospital", "distance_km": 1.8, "signals": 2},
+    {"from": "B", "to": "Hospital", "distance_km": 2.0, "signals": 2},
+    {"from": "Fire_Station", "to": "A", "distance_km": 0.6, "signals": 0},
+    {"from": "Fire_Station", "to": "B", "distance_km": 1.4, "signals": 1},
+    {"from": "Police_HQ", "to": "A", "distance_km": 0.4, "signals": 0},
+    {"from": "Police_HQ", "to": "C", "distance_km": 1.8, "signals": 1}
+  ],
+  "destinations": {
+    "Ambulance": "Hospital",
+    "Fire Engine": "Fire_Station",
+    "Police Vehicle": "Police_HQ"
+  },
+  "default_destinations": {
+    "Ambulance": "Hospital",
+    "Fire Engine": "Hospital",
+    "Police Vehicle": "Police_HQ"
+  },
+  "avg_speed_kmh": {
+    "Low": 45,
+    "Moderate": 30,
+    "Heavy": 15
+  }
+}

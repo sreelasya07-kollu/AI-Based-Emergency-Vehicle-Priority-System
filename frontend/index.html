@@ -1,0 +1,1016 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>RescueRoute AI</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<!-- =====================================================
+     LOGIN PAGE
+===================================================== -->
+
+<div id="loginPage" class="login-page">
+
+    <div class="login-container">
+
+        <div class="login-brand">
+
+            <div class="brand-icon">
+                🚑
+            </div>
+
+            <h1>RescueRoute AI</h1>
+
+            <p>
+                ML-Based Emergency Vehicle Priority System
+            </p>
+
+        </div>
+
+
+        <div class="login-card">
+
+            <div class="login-header">
+
+                <span>SECURE ACCESS</span>
+
+                <h2>System Login</h2>
+
+                <p>
+                    Select your role to continue
+                </p>
+
+            </div>
+
+
+            <!-- ROLE -->
+
+            <label>
+                LOGIN AS
+            </label>
+
+            <select id="roleSelect">
+
+                <option value="admin">
+                    Administrator
+                </option>
+
+                <option value="traffic">
+                    Traffic Police
+                </option>
+
+                <option value="hospital">
+                    Hospital
+                </option>
+
+            </select>
+
+
+            <!-- USERNAME -->
+
+            <label>
+                USERNAME
+            </label>
+
+            <input
+                type="text"
+                id="username"
+                placeholder="Enter username"
+            >
+
+
+            <!-- PASSWORD -->
+
+            <label>
+                PASSWORD
+            </label>
+
+            <input
+                type="password"
+                id="password"
+                placeholder="Enter password"
+            >
+
+
+            <button
+                class="login-button"
+                onclick="login()"
+            >
+                LOGIN
+            </button>
+
+
+            <p
+                id="loginError"
+                class="login-error"
+            ></p>
+
+        </div>
+
+
+        <div class="login-footer">
+
+            RescueRoute AI © 2026
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<!-- =====================================================
+     APPLICATION
+===================================================== -->
+
+<div
+    id="appPage"
+    class="app-page hidden"
+>
+
+
+    <!-- SIDEBAR -->
+
+    <aside class="sidebar">
+
+        <div class="sidebar-brand">
+
+            <div class="brand-icon small">
+                🚑
+            </div>
+
+            <div>
+
+                <h2>
+                    RescueRoute
+                </h2>
+
+                <span>
+                    AI Emergency System
+                </span>
+
+            </div>
+
+        </div>
+
+
+        <div class="role-display">
+
+            <span>
+                LOGGED IN AS
+            </span>
+
+            <strong id="currentRole">
+                Administrator
+            </strong>
+
+        </div>
+
+
+        <nav id="sidebarNav">
+
+            <!-- Filled dynamically -->
+
+        </nav>
+
+
+        <div class="sidebar-bottom">
+
+            <div class="system-online">
+
+                <span class="online-dot"></span>
+
+                SYSTEM ONLINE
+
+            </div>
+
+
+            <button
+                class="logout-button"
+                onclick="logout()"
+            >
+                Logout
+            </button>
+
+        </div>
+
+    </aside>
+
+
+    <!-- MAIN CONTENT -->
+
+    <main class="main-content">
+
+
+        <!-- TOPBAR -->
+
+        <header class="topbar">
+
+            <div>
+
+                <p class="eyebrow">
+                    LIVE MONITORING
+                </p>
+
+                <h1 id="pageTitle">
+                    Emergency Control Center
+                </h1>
+
+            </div>
+
+
+            <div class="topbar-right">
+
+                <div class="live-indicator">
+
+                    <span></span>
+
+                    LIVE
+
+                </div>
+
+                <div
+                    class="date-time"
+                    id="dateTime"
+                >
+                    --
+                </div>
+
+            </div>
+
+        </header>
+
+
+        <!-- =================================================
+             ADMIN DASHBOARD
+        ================================================== -->
+
+        <section
+            id="adminDashboard"
+            class="dashboard-section"
+        >
+
+            <div class="hero">
+
+                <div>
+
+                    <p class="eyebrow">
+                        ML-BASED EMERGENCY VEHICLE
+                        PRIORITY SYSTEM
+                    </p>
+
+                    <h2>
+                        Emergency Vehicle Control Center
+                    </h2>
+
+                    <p>
+                        Real-time AI detection,
+                        traffic analysis and
+                        emergency route management.
+                    </p>
+
+                </div>
+
+
+                <div
+                    id="adminEmergencyBadge"
+                    class="status-badge normal"
+                >
+                    NORMAL
+                </div>
+
+            </div>
+
+
+            <!-- STATUS -->
+
+            <div class="stats-grid">
+
+                <div class="stat-card">
+
+                    <span>
+                        AMBULANCE
+                    </span>
+
+                    <strong id="adminAmbulance">
+                        NOT DETECTED
+                    </strong>
+
+                    <small>
+                        YOLO11 Vision
+                    </small>
+
+                </div>
+
+
+                <div class="stat-card">
+
+                    <span>
+                        CONFIDENCE
+                    </span>
+
+                    <strong id="adminConfidence">
+                        0%
+                    </strong>
+
+                    <small>
+                        Detection confidence
+                    </small>
+
+                </div>
+
+
+                <div class="stat-card">
+
+                    <span>
+                        TRAFFIC
+                    </span>
+
+                    <strong id="adminTraffic">
+                        LOW
+                    </strong>
+
+                    <small id="adminTrafficScore">
+                        Score: 0
+                    </small>
+
+                </div>
+
+
+                <div class="stat-card">
+
+                    <span>
+                        SIGNAL PRIORITY
+                    </span>
+
+                    <strong id="adminSignal">
+                        INACTIVE
+                    </strong>
+
+                    <small>
+                        Emergency control
+                    </small>
+
+                </div>
+
+            </div>
+
+
+            <!-- VEHICLES -->
+
+            <div class="panel">
+
+                <div class="panel-header">
+
+                    <div>
+
+                        <p class="eyebrow">
+                            AI TRAFFIC ANALYSIS
+                        </p>
+
+                        <h2>
+                            Live Vehicle Detection
+                        </h2>
+
+                    </div>
+
+
+                    <div
+                        id="adminTotalVehicles"
+                        class="total-count"
+                    >
+                        0 vehicles
+                    </div>
+
+                </div>
+
+
+                <div class="vehicle-grid">
+
+                    <div class="vehicle-card">
+                        <div class="vehicle-icon">
+                            🚗
+                        </div>
+
+                        <strong id="adminCars">
+                            0
+                        </strong>
+
+                        <span>
+                            Cars
+                        </span>
+                    </div>
+
+
+                    <div class="vehicle-card">
+                        <div class="vehicle-icon">
+                            🏍️
+                        </div>
+
+                        <strong id="adminMotorcycles">
+                            0
+                        </strong>
+
+                        <span>
+                            Motorcycles
+                        </span>
+                    </div>
+
+
+                    <div class="vehicle-card">
+                        <div class="vehicle-icon">
+                            🚌
+                        </div>
+
+                        <strong id="adminBuses">
+                            0
+                        </strong>
+
+                        <span>
+                            Buses
+                        </span>
+                    </div>
+
+
+                    <div class="vehicle-card">
+                        <div class="vehicle-icon">
+                            🚚
+                        </div>
+
+                        <strong id="adminTrucks">
+                            0
+                        </strong>
+
+                        <span>
+                            Trucks
+                        </span>
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- ROUTE -->
+
+            <div class="panel">
+
+                <div class="panel-header">
+
+                    <div>
+
+                        <p class="eyebrow">
+                            REAL-WORLD ROUTING
+                        </p>
+
+                        <h2>
+                            Emergency Route
+                        </h2>
+
+                    </div>
+
+
+                    <span class="engine-badge">
+                        OSRM
+                    </span>
+
+                </div>
+
+
+                <div class="route-box">
+
+                    <span>
+                        CURRENT ROUTE
+                    </span>
+
+                    <strong id="adminRoute">
+                        Waiting for route...
+                    </strong>
+
+
+                    <div class="route-stats">
+
+                        <div>
+
+                            <span>
+                                DISTANCE
+                            </span>
+
+                            <strong id="adminDistance">
+                                0 km
+                            </strong>
+
+                        </div>
+
+
+                        <div>
+
+                            <span>
+                                ETA
+                            </span>
+
+                            <strong id="adminEta">
+                                --
+                            </strong>
+
+                        </div>
+
+
+                        <div>
+
+                            <span>
+                                DESTINATION
+                            </span>
+
+                            <strong id="adminDestination">
+                                --
+                            </strong>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =================================================
+             TRAFFIC POLICE DASHBOARD
+        ================================================== -->
+
+        <section
+            id="trafficDashboard"
+            class="dashboard-section hidden"
+        >
+
+            <div class="hero traffic-hero">
+
+                <div>
+
+                    <p class="eyebrow">
+                        TRAFFIC MANAGEMENT
+                    </p>
+
+                    <h2>
+                        Traffic Police Control Center
+                    </h2>
+
+                    <p>
+                        Monitor vehicle density and
+                        emergency signal priority.
+                    </p>
+
+                </div>
+
+
+                <div
+                    id="trafficEmergencyBadge"
+                    class="status-badge normal"
+                >
+                    NORMAL
+                </div>
+
+            </div>
+
+
+            <div class="stats-grid">
+
+                <div class="stat-card">
+
+                    <span>
+                        TRAFFIC LEVEL
+                    </span>
+
+                    <strong id="policeTraffic">
+                        LOW
+                    </strong>
+
+                    <small>
+                        Live camera analysis
+                    </small>
+
+                </div>
+
+
+                <div class="stat-card">
+
+                    <span>
+                        TOTAL VEHICLES
+                    </span>
+
+                    <strong id="policeTotal">
+                        0
+                    </strong>
+
+                    <small>
+                        Detected vehicles
+                    </small>
+
+                </div>
+
+
+                <div class="stat-card">
+
+                    <span>
+                        AMBULANCE
+                    </span>
+
+                    <strong id="policeAmbulance">
+                        NOT DETECTED
+                    </strong>
+
+                    <small>
+                        Emergency vehicle
+                    </small>
+
+                </div>
+
+
+                <div class="stat-card">
+
+                    <span>
+                        SIGNAL PRIORITY
+                    </span>
+
+                    <strong id="policeSignal">
+                        INACTIVE
+                    </strong>
+
+                    <small>
+                        Priority control
+                    </small>
+
+                </div>
+
+            </div>
+
+
+            <div class="panel">
+
+                <div class="panel-header">
+
+                    <div>
+
+                        <p class="eyebrow">
+                            TRAFFIC MONITORING
+                        </p>
+
+                        <h2>
+                            Vehicle Distribution
+                        </h2>
+
+                    </div>
+
+                </div>
+
+
+                <div class="traffic-bars">
+
+                    <div class="bar-item">
+
+                        <div>
+                            <span>Cars</span>
+                            <strong id="policeCars">
+                                0
+                            </strong>
+                        </div>
+
+                        <div class="bar">
+                            <div id="carBar"></div>
+                        </div>
+
+                    </div>
+
+
+                    <div class="bar-item">
+
+                        <div>
+                            <span>Motorcycles</span>
+                            <strong id="policeMotorcycles">
+                                0
+                            </strong>
+                        </div>
+
+                        <div class="bar">
+                            <div id="motorcycleBar"></div>
+                        </div>
+
+                    </div>
+
+
+                    <div class="bar-item">
+
+                        <div>
+                            <span>Buses</span>
+                            <strong id="policeBuses">
+                                0
+                            </strong>
+                        </div>
+
+                        <div class="bar">
+                            <div id="busBar"></div>
+                        </div>
+
+                    </div>
+
+
+                    <div class="bar-item">
+
+                        <div>
+                            <span>Trucks</span>
+                            <strong id="policeTrucks">
+                                0
+                            </strong>
+                        </div>
+
+                        <div class="bar">
+                            <div id="truckBar"></div>
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <div class="two-column">
+
+                <div class="panel">
+
+                    <p class="eyebrow">
+                        SIGNAL STATUS
+                    </p>
+
+                    <h2 id="policeSignalLarge">
+                        SIGNAL PRIORITY INACTIVE
+                    </h2>
+
+                    <p class="muted">
+                        Waiting for emergency
+                        vehicle detection.
+                    </p>
+
+                </div>
+
+
+                <div class="panel">
+
+                    <p class="eyebrow">
+                        TRAFFIC SCORE
+                    </p>
+
+                    <h2 id="policeScore">
+                        0 / 100
+                    </h2>
+
+                    <p class="muted">
+                        Calculated from live
+                        vehicle detection.
+                    </p>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =================================================
+             HOSPITAL DASHBOARD
+        ================================================== -->
+
+        <section
+            id="hospitalDashboard"
+            class="dashboard-section hidden"
+        >
+
+            <div class="hero hospital-hero">
+
+                <div>
+
+                    <p class="eyebrow">
+                        HOSPITAL EMERGENCY DESK
+                    </p>
+
+                    <h2>
+                        Incoming Ambulance Monitor
+                    </h2>
+
+                    <p>
+                        Track emergency vehicle
+                        route and estimated arrival.
+                    </p>
+
+                </div>
+
+
+                <div
+                    id="hospitalEmergencyBadge"
+                    class="status-badge normal"
+                >
+                    NO AMBULANCE
+                </div>
+
+            </div>
+
+
+            <div class="stats-grid">
+
+                <div class="stat-card">
+
+                    <span>
+                        AMBULANCE
+                    </span>
+
+                    <strong id="hospitalAmbulance">
+                        NOT DETECTED
+                    </strong>
+
+                    <small>
+                        AI detection
+                    </small>
+
+                </div>
+
+
+                <div class="stat-card">
+
+                    <span>
+                        ETA
+                    </span>
+
+                    <strong id="hospitalEta">
+                        --
+                    </strong>
+
+                    <small>
+                        Route estimate
+                    </small>
+
+                </div>
+
+
+                <div class="stat-card">
+
+                    <span>
+                        DISTANCE
+                    </span>
+
+                    <strong id="hospitalDistance">
+                        0 km
+                    </strong>
+
+                    <small>
+                        Remaining route
+                    </small>
+
+                </div>
+
+
+                <div class="stat-card">
+
+                    <span>
+                        CONFIDENCE
+                    </span>
+
+                    <strong id="hospitalConfidence">
+                        0%
+                    </strong>
+
+                    <small>
+                        YOLO11
+                    </small>
+
+                </div>
+
+            </div>
+
+
+            <div class="panel">
+
+                <p class="eyebrow">
+                    DESTINATION
+                </p>
+
+                <h2 id="hospitalDestination">
+                    Waiting for ambulance...
+                </h2>
+
+                <p class="muted">
+                    Emergency destination
+                </p>
+
+            </div>
+
+
+            <div class="panel">
+
+                <div class="panel-header">
+
+                    <div>
+
+                        <p class="eyebrow">
+                            REAL ROAD ROUTE
+                        </p>
+
+                        <h2>
+                            Ambulance Route
+                        </h2>
+
+                    </div>
+
+                    <span class="engine-badge">
+                        OSRM
+                    </span>
+
+                </div>
+
+
+                <div class="hospital-route">
+
+                    <strong id="hospitalRoute">
+                        Waiting for ambulance route...
+                    </strong>
+
+                </div>
+
+            </div>
+
+
+            <div class="panel arrival-panel">
+
+                <div>
+
+                    <p class="eyebrow">
+                        EMERGENCY STATUS
+                    </p>
+
+                    <h2 id="arrivalStatus">
+                        No incoming ambulance
+                    </h2>
+
+                </div>
+
+                <div class="arrival-icon">
+                    🚑
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- SYSTEM -->
+
+        <div class="system-footer">
+
+            <span>
+                YOLO11 Detection
+                <strong>ONLINE</strong>
+            </span>
+
+            <span>
+                Real Road Routing
+                <strong>ONLINE</strong>
+            </span>
+
+            <span>
+                Traffic Analysis
+                <strong>ONLINE</strong>
+            </span>
+
+            <span>
+                Backend API
+                <strong>ONLINE</strong>
+            </span>
+
+        </div>
+
+
+        <footer>
+            RescueRoute AI · ML-Based Emergency Vehicle Priority System
+        </footer>
+
+    </main>
+
+</div>
+
+
+<script src="script.js"></script>
+
+</body>
+
+</html>

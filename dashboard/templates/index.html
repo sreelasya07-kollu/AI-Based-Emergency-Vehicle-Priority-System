@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+    <title>RescueRouteAI</title>
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1">
+
+    <style>
+
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: #0f172a;
+            color: white;
+        }
+
+        header {
+            padding: 25px;
+            background: #111827;
+            border-bottom: 1px solid #334155;
+        }
+
+        header h1 {
+            margin: 0;
+        }
+
+        header p {
+            color: #94a3b8;
+        }
+
+        .container {
+            padding: 25px;
+            max-width: 1100px;
+            margin: auto;
+        }
+
+        .status {
+            padding: 20px;
+            border-radius: 12px;
+            margin-bottom: 20px;
+            background: #1e293b;
+        }
+
+        .normal {
+            border-left: 6px solid #22c55e;
+        }
+
+        .emergency {
+            border-left: 6px solid #ef4444;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns:
+                repeat(auto-fit, minmax(220px, 1fr));
+
+            gap: 20px;
+        }
+
+        .card {
+            background: #1e293b;
+            padding: 22px;
+            border-radius: 12px;
+        }
+
+        .card h3 {
+            color: #94a3b8;
+            margin-top: 0;
+        }
+
+        .value {
+            font-size: 24px;
+            font-weight: bold;
+        }
+
+        .route {
+            font-size: 18px;
+            line-height: 1.8;
+        }
+
+        button {
+            padding: 12px 20px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            margin-right: 10px;
+            font-weight: bold;
+        }
+
+        .activate {
+            background: #ef4444;
+            color: white;
+        }
+
+        .reset {
+            background: #334155;
+            color: white;
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+<header>
+
+    <h1>🚑 RescueRouteAI</h1>
+
+    <p>
+        ML-Based Emergency Vehicle Priority System
+    </p>
+
+</header>
+
+
+<div class="container">
+
+    <div id="statusBox"
+         class="status normal">
+
+        <h2 id="statusText">
+            🟢 NORMAL TRAFFIC
+        </h2>
+
+        <p id="statusDescription">
+            No emergency vehicle detected.
+        </p>
+
+    </div>
+
+
+    <div class="grid">
+
+
+        <div class="card">
+
+            <h3>Emergency Vehicle</h3>
+
+            <div class="value"
+                 id="vehicle">
+
+                None
+
+            </div>
+
+        </div>
+
+
+        <div class="card">
+
+            <h3>Detection Confidence</h3>
+
+            <div class="value"
+                 id="confidence">
+
+                0%
+
+            </div>
+
+        </div>
+
+
+        <div class="card">
+
+            <h3>Emergency Mode</h3>
+
+            <div class="value"
+                 id="emergency">
+
+                OFF
+
+            </div>
+
+        </div>
+
+
+        <div class="card">
+
+            <h3>Signal Priority</h3>
+
+            <div class="value"
+                 id="signal">
+
+                OFF
+
+            </div>
+
+        </div>
+
+
+        <div class="card">
+
+            <h3>Recommended Green</h3>
+
+            <div class="value"
+                 id="junction">
+
+                --
+
+            </div>
+
+        </div>
+
+
+        <div class="card">
+
+            <h3>Estimated ETA</h3>
+
+            <div class="value"
+                 id="eta">
+
+                --
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <br>
+
+
+    <div class="card">
+
+        <h3>🗺️ Recommended Route</h3>
+
+        <div class="route"
+             id="route">
+
+            Junction E → Junction D → Junction A → Hospital
+
+        </div>
+
+    </div>
+
+
+    <br>
+
+
+    <button class="activate"
+            onclick="activateEmergency()">
+
+        🚑 Simulate Ambulance
+
+    </button>
+
+
+    <button class="reset"
+            onclick="resetSystem()">
+
+        Reset
+
+    </button>
+
+</div>
+
+
+<script>
+
+async function updateDashboard() {
+
+    const response =
+        await fetch("/api/status");
+
+    const data =
+        await response.json();
+
+
+    document.getElementById("vehicle").innerText =
+        data.ambulance_detected
+        ? "🚑 Ambulance"
+        : "None";
+
+
+    document.getElementById("confidence").innerText =
+        data.confidence
+        ? (data.confidence * 100).toFixed(1) + "%"
+        : "0%";
+
+
+    document.getElementById("emergency").innerText =
+        data.emergency_mode
+        ? "🔴 ON"
+        : "🟢 OFF";
+
+
+    document.getElementById("signal").innerText =
+        data.signal_priority
+        ? "🟢 ACTIVE"
+        : "OFF";
+
+
+    document.getElementById("junction").innerText =
+        data.green_junction;
+
+
+    document.getElementById("eta").innerText =
+        data.eta;
+
+
+    document.getElementById("route").innerText =
+        data.route;
+
+
+    const box =
+        document.getElementById("statusBox");
+
+    const text =
+        document.getElementById("statusText");
+
+    const description =
+        document.getElementById("statusDescription");
+
+
+    if (data.emergency_mode) {
+
+        box.className =
+            "status emergency";
+
+        text.innerText =
+            "🔴 EMERGENCY MODE ACTIVE";
+
+        description.innerText =
+            "Ambulance detected — traffic priority activated.";
+
+    } else {
+
+        box.className =
+            "status normal";
+
+        text.innerText =
+            "🟢 NORMAL TRAFFIC";
+
+        description.innerText =
+            "No emergency vehicle detected.";
+
+    }
+
+}
+
+
+async function activateEmergency() {
+
+    await fetch("/api/emergency");
+
+    updateDashboard();
+
+}
+
+
+async function resetSystem() {
+
+    await fetch("/api/reset");
+
+    updateDashboard();
+
+}
+
+
+setInterval(
+    updateDashboard,
+    1000
+);
+
+updateDashboard();
+
+</script>
+
+</body>
+
+</html>
