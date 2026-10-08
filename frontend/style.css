@@ -1,965 +1,540 @@
 * {
-    margin: 0;
-    padding: 0;
     box-sizing: border-box;
 }
 
+html,
 body {
-    font-family:
-        -apple-system,
-        BlinkMacSystemFont,
-        "Segoe UI",
-        sans-serif;
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    min-height: 100%;
+    font-family: Arial, Helvetica, sans-serif;
+    background: #06111c;
+    color: #e8f0f7;
+}
 
-    background: #07111f;
-    color: #eaf2ff;
+body {
     min-height: 100vh;
 }
+
+
+/* ================= GENERAL ================= */
 
 .hidden {
     display: none !important;
 }
 
+button {
+    cursor: pointer;
+}
 
-/* =====================================================
-   LOGIN
-===================================================== */
+
+/* ================= LOGIN ================= */
 
 .login-page {
     min-height: 100vh;
-
     display: flex;
-    align-items: center;
     justify-content: center;
-
+    align-items: center;
     background:
         radial-gradient(
-            circle at top right,
-            #102d4b,
-            transparent 40%
-        ),
-        #07111f;
-}
-
-.login-container {
-    width: 420px;
-    max-width: 92%;
-}
-
-.login-brand {
-    text-align: center;
-    margin-bottom: 25px;
-}
-
-.brand-icon {
-    width: 65px;
-    height: 65px;
-
-    margin: auto;
-
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
-    border-radius: 18px;
-
-    background: #112b47;
-
-    font-size: 32px;
-
-    margin-bottom: 15px;
-}
-
-.brand-icon.small {
-    width: 43px;
-    height: 43px;
-
-    margin: 0;
-
-    border-radius: 11px;
-
-    font-size: 21px;
-}
-
-.login-brand h1 {
-    font-size: 27px;
-}
-
-.login-brand p {
-    color: #71869d;
-    font-size: 12px;
-    margin-top: 7px;
+            circle at center,
+            #10283a 0%,
+            #06111c 55%,
+            #030a11 100%
+        );
 }
 
 .login-card {
-    background: #0c192a;
-
-    border: 1px solid #1b3048;
-
-    border-radius: 15px;
-
-    padding: 30px;
-
-    box-shadow:
-        0 25px 60px rgba(0, 0, 0, 0.35);
-}
-
-.login-header {
-    margin-bottom: 25px;
-}
-
-.login-header span {
-    color: #5c9ed8;
-
-    font-size: 9px;
-
-    letter-spacing: 1.5px;
-
-    font-weight: 700;
-}
-
-.login-header h2 {
-    margin-top: 8px;
-    font-size: 22px;
-}
-
-.login-header p {
-    color: #6e8197;
-    font-size: 11px;
-    margin-top: 5px;
-}
-
-.login-card label {
-    display: block;
-
-    color: #6f8298;
-
-    font-size: 9px;
-
-    letter-spacing: 1px;
-
-    font-weight: 700;
-
-    margin-top: 17px;
-
-    margin-bottom: 7px;
-}
-
-.login-card input,
-.login-card select {
-    width: 100%;
-
-    padding: 13px 14px;
-
-    background: #081422;
-
-    border: 1px solid #1b3148;
-
-    border-radius: 8px;
-
-    color: #eaf2ff;
-
-    outline: none;
-
-    font-size: 12px;
-}
-
-.login-card input:focus,
-.login-card select:focus {
-    border-color: #3c79ad;
-}
-
-.login-button {
-    width: 100%;
-
-    margin-top: 24px;
-
-    padding: 13px;
-
-    border: 0;
-
-    border-radius: 8px;
-
-    background: #164a75;
-
-    color: white;
-
-    font-weight: 700;
-
-    cursor: pointer;
-}
-
-.login-button:hover {
-    background: #1b5b8e;
-}
-
-.login-error {
-    color: #ff6878;
-
+    width: 420px;
+    padding: 40px;
+    background: #0b1c2a;
+    border: 1px solid #21435b;
+    border-radius: 18px;
+    box-shadow: 0 20px 60px rgba(0,0,0,.45);
     text-align: center;
-
-    font-size: 11px;
-
-    margin-top: 12px;
-
-    min-height: 15px;
 }
 
-.login-footer {
-    text-align: center;
-
-    color: #40556c;
-
-    font-size: 9px;
-
-    margin-top: 20px;
+.login-card .logo {
+    font-size: 55px;
 }
 
-
-/* =====================================================
-   APPLICATION
-===================================================== */
-
-.app-page {
-    min-height: 100vh;
+.login-card h1 {
+    margin: 10px 0 5px;
 }
 
-.sidebar {
-    position: fixed;
-
-    top: 0;
-    left: 0;
-    bottom: 0;
-
-    width: 250px;
-
-    padding: 25px 20px;
-
-    background: #0b1728;
-
-    border-right: 1px solid #172941;
-
-    z-index: 10;
+.login-card p {
+    color: #8fa8ba;
+    margin-bottom: 30px;
 }
 
-.sidebar-brand {
-    display: flex;
-
-    align-items: center;
-
-    gap: 11px;
-
-    margin-bottom: 35px;
-}
-
-.sidebar-brand h2 {
-    font-size: 16px;
-}
-
-.sidebar-brand span {
-    color: #6d8197;
-
-    display: block;
-
-    font-size: 9px;
-
-    margin-top: 3px;
-}
-
-.role-display {
+.login-card input {
+    width: 100%;
     padding: 14px;
-
-    border: 1px solid #172d44;
-
-    background: #091524;
-
-    border-radius: 9px;
-
-    margin-bottom: 25px;
-}
-
-.role-display span {
-    display: block;
-
-    color: #5e7389;
-
-    font-size: 8px;
-
-    letter-spacing: 1px;
-}
-
-.role-display strong {
-    display: block;
-
-    color: #b8d3ed;
-
-    font-size: 12px;
-
-    margin-top: 6px;
-}
-
-.sidebar nav {
-    display: flex;
-
-    flex-direction: column;
-
-    gap: 6px;
-}
-
-.sidebar nav button {
-    width: 100%;
-
-    padding: 12px 13px;
-
-    text-align: left;
-
-    border: 0;
-
-    background: transparent;
-
-    color: #7f91a6;
-
-    border-radius: 8px;
-
-    cursor: pointer;
-
-    font-size: 11px;
-}
-
-.sidebar nav button.active,
-.sidebar nav button:hover {
-    background: #132a44;
-
-    color: white;
-}
-
-.sidebar-bottom {
-    position: absolute;
-
-    left: 20px;
-    right: 20px;
-    bottom: 25px;
-}
-
-.system-online {
-    color: #54d69e;
-
-    font-size: 9px;
-
     margin-bottom: 12px;
-}
-
-.online-dot {
-    display: inline-block;
-
-    width: 7px;
-    height: 7px;
-
-    border-radius: 50%;
-
-    background: #54d69e;
-
-    margin-right: 6px;
-}
-
-.logout-button {
-    width: 100%;
-
-    padding: 10px;
-
-    border: 1px solid #233950;
-
-    background: transparent;
-
-    border-radius: 7px;
-
-    color: #8092a7;
-
-    cursor: pointer;
-
-    font-size: 10px;
-}
-
-.logout-button:hover {
+    border-radius: 8px;
+    border: 1px solid #29485e;
+    background: #071522;
     color: white;
+    outline: none;
+}
 
-    background: #15283d;
+.login-card button {
+    width: 100%;
+    padding: 14px;
+    border: none;
+    border-radius: 8px;
+    background: #1683ff;
+    color: white;
+    font-size: 15px;
+    font-weight: bold;
+}
+
+#loginError {
+    color: #ff6b6b;
+    margin-top: 12px;
+}
+
+.demo-login {
+    margin-top: 25px;
+    padding: 15px;
+    background: #071522;
+    border-radius: 8px;
+    color: #8fa8ba;
+    line-height: 1.8;
+    font-size: 13px;
 }
 
 
-/* =====================================================
-   MAIN
-===================================================== */
-
-.main-content {
-    margin-left: 250px;
-
-    width: calc(100% - 250px);
-
-    padding: 28px 38px;
-
-    max-width: 1600px;
-}
+/* ================= TOPBAR ================= */
 
 .topbar {
+    height: 82px;
+    padding: 0 30px;
     display: flex;
-
     align-items: center;
-
     justify-content: space-between;
 
-    margin-bottom: 25px;
+    background: #071522;
+    border-bottom: 1px solid #1c3a50;
+
+    position: sticky;
+    top: 0;
+    z-index: 1000;
 }
 
 .topbar h1 {
-    font-size: 24px;
+    margin: 0;
+    font-size: 22px;
 }
 
-.topbar-right {
+.topbar span {
+    font-size: 11px;
+    letter-spacing: 2px;
+    color: #42a5ff;
+    font-weight: bold;
+}
+
+.top-actions {
     display: flex;
-
     align-items: center;
-
     gap: 20px;
 }
 
-.live-indicator {
-    color: #5ce0a4;
-
-    font-size: 10px;
-
-    font-weight: 700;
+.top-actions button {
+    background: transparent;
+    border: 1px solid #34546b;
+    color: #d9e6ef;
+    padding: 10px 20px;
+    border-radius: 8px;
 }
 
-.live-indicator span {
-    display: inline-block;
-
-    width: 7px;
-    height: 7px;
-
-    border-radius: 50%;
-
-    background: #5ce0a4;
-
-    margin-right: 5px;
+.connection {
+    font-size: 13px !important;
+    letter-spacing: 0 !important;
 }
 
-.date-time {
-    color: #60758c;
-
-    font-size: 10px;
+.connection.connected {
+    color: #2cff9a !important;
 }
 
-.eyebrow {
-    color: #607892;
-
-    font-size: 9px;
-
-    letter-spacing: 1.4px;
-
-    font-weight: 700;
-
-    margin-bottom: 7px;
+.connection.disconnected {
+    color: #ff6464 !important;
 }
 
 
-/* =====================================================
-   HERO
-===================================================== */
+/* ================= DASHBOARD ================= */
 
-.hero {
-    padding: 27px;
+.dashboard {
+    padding: 28px 30px 50px;
+    max-width: 1700px;
+    margin: auto;
+}
 
-    border: 1px solid #1b3858;
+.dashboard-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 22px;
+}
 
-    border-radius: 14px;
+.dashboard-header h2 {
+    margin: 0 0 6px;
+    font-size: 28px;
+}
 
-    background:
-        linear-gradient(
-            135deg,
-            #102a45,
-            #0c1a2c
-        );
+.dashboard-header p {
+    margin: 0;
+    color: #7891a3;
+}
+
+
+/* ================= MAP CARD ================= */
+
+.map-card {
+    width: 100%;
+    margin-top: 25px;
+
+    background: #0b202e;
+
+    border: 1px solid #23465e;
+
+    border-radius: 16px;
+
+    overflow: hidden;
+
+    box-shadow:
+        0 12px 35px rgba(0,0,0,.25);
+}
+
+.map-title {
+    height: 78px;
+
+    padding: 15px 20px;
 
     display: flex;
-
+    align-items: center;
     justify-content: space-between;
 
-    align-items: center;
+    background: #091a28;
 
-    margin-bottom: 18px;
+    border-bottom: 1px solid #23465e;
 }
 
-.hero h2 {
-    font-size: 24px;
-
-    margin-bottom: 7px;
-}
-
-.hero p:not(.eyebrow) {
-    color: #71869b;
-
-    font-size: 11px;
-}
-
-.status-badge {
-    padding: 11px 17px;
-
-    border-radius: 8px;
-
-    font-size: 10px;
-
-    font-weight: 800;
-}
-
-.status-badge.normal {
-    background: #12372b;
-
-    color: #58dfa4;
-}
-
-.status-badge.emergency {
-    background: #461b24;
-
-    color: #ff6979;
-}
-
-.status-badge.verifying {
-    background: #413718;
-
-    color: #ffd166;
-}
-
-
-/* =====================================================
-   STATS
-===================================================== */
-
-.stats-grid {
-    display: grid;
-
-    grid-template-columns:
-        repeat(4, 1fr);
-
-    gap: 14px;
-
-    margin-bottom: 18px;
-}
-
-.stat-card {
-    padding: 19px;
-
-    background: #0c192a;
-
-    border: 1px solid #172c43;
-
-    border-radius: 11px;
-}
-
-.stat-card span {
-    color: #637991;
-
-    font-size: 8px;
-
-    letter-spacing: 1px;
-
-    font-weight: 700;
-}
-
-.stat-card strong {
-    display: block;
-
-    margin: 10px 0 5px;
-
+.map-title h2 {
+    margin: 0 0 5px;
     font-size: 19px;
 }
 
-.stat-card small {
-    color: #60758c;
+.map-title span {
+    color: #7894a7;
+    font-size: 11px;
+    letter-spacing: 1px;
+}
 
-    font-size: 9px;
+.map-title b {
+    color: #25ef9b;
+    font-size: 12px;
 }
 
 
-/* =====================================================
-   PANELS
-===================================================== */
+/* ================= REAL MAP ================= */
 
-.panel {
-    padding: 21px;
+.real-map {
+    width: 100% !important;
+    height: 560px !important;
 
-    background: #0c192a;
+    min-height: 560px !important;
 
-    border: 1px solid #172c43;
+    position: relative !important;
 
-    border-radius: 11px;
+    display: block !important;
 
-    margin-bottom: 17px;
+    background: #d9d9d9;
 }
 
-.panel-header {
+
+/*
+IMPORTANT:
+Leaflet itself must have a height.
+*/
+
+.leaflet-container {
+    width: 100% !important;
+    height: 100% !important;
+
+    background: #d9d9d9;
+
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+
+/* Leaflet controls */
+
+.leaflet-control-zoom a {
+    background: white !important;
+    color: #222 !important;
+}
+
+
+/* ================= AMBULANCE ================= */
+
+.ambulance-leaflet-icon,
+.emergency-leaflet-icon,
+.driver-leaflet-icon {
+    background: transparent !important;
+    border: none !important;
+}
+
+
+/* ================= HOSPITAL ================= */
+
+.emergency-count {
+    padding: 12px 18px;
+    border-radius: 8px;
+    background: #32161a;
+    color: #ff6464;
+    border: 1px solid #71343a;
+    font-weight: bold;
+}
+
+.ambulance-grid {
+    display: grid;
+    grid-template-columns:
+        repeat(auto-fit, minmax(280px, 1fr));
+    gap: 15px;
+}
+
+.ambulance-card {
     display: flex;
-
-    justify-content: space-between;
-
+    gap: 15px;
     align-items: center;
 
-    margin-bottom: 18px;
+    padding: 18px;
+
+    background: #0b1c2a;
+
+    border: 1px solid #20425a;
+
+    border-radius: 12px;
 }
 
-.panel-header h2 {
+.ambulance-card.emergency {
+    border-color: #ef4d55;
+    box-shadow: 0 0 20px rgba(239,77,85,.15);
+}
+
+.ambulance-icon {
+    font-size: 35px;
+}
+
+.ambulance-card h3 {
+    margin: 0 0 7px;
+}
+
+.ambulance-card p {
+    margin: 4px 0;
+    color: #8ea5b6;
+    font-size: 13px;
+}
+
+
+/* ================= TRAFFIC ================= */
+
+.traffic-stats {
+    display: flex;
+    gap: 12px;
+}
+
+.traffic-stats > div {
+    min-width: 110px;
+    padding: 12px 16px;
+
+    background: #0b1c2a;
+
+    border: 1px solid #20425a;
+
+    border-radius: 10px;
+
+    text-align: center;
+}
+
+.traffic-stats strong {
+    display: block;
+    font-size: 23px;
+}
+
+.traffic-stats span {
+    font-size: 9px;
+    color: #7894a7;
+}
+
+.traffic-layout {
+    display: grid;
+    grid-template-columns: 1fr 350px;
+    gap: 20px;
+}
+
+.traffic-left {
+    min-width: 0;
+}
+
+.traffic-right {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.panel {
+    background: #0b1c2a;
+    border: 1px solid #20425a;
+    border-radius: 12px;
+    padding: 18px;
+}
+
+.panel h2 {
+    margin: 0 0 12px;
     font-size: 17px;
 }
 
-.total-count {
-    color: #8295aa;
-
-    font-size: 10px;
-}
-
-.engine-badge {
-    padding: 6px 10px;
-
-    border-radius: 5px;
-
-    background: #142d48;
-
-    color: #75aee0;
-
-    font-size: 9px;
-
-    font-weight: 700;
+.panel-count {
+    color: #ff6464;
+    font-size: 12px;
+    margin-bottom: 15px;
 }
 
 
-/* =====================================================
-   VEHICLES
-===================================================== */
+/* ================= TRAFFIC CARDS ================= */
 
-.vehicle-grid {
-    display: grid;
-
-    grid-template-columns:
-        repeat(4, 1fr);
-
-    gap: 11px;
-}
-
-.vehicle-card {
-    background: #091524;
-
-    border: 1px solid #172c42;
-
-    border-radius: 9px;
-
-    padding: 17px;
-}
-
-.vehicle-icon {
-    font-size: 22px;
-
-    margin-bottom: 10px;
-}
-
-.vehicle-card strong {
-    display: block;
-
-    font-size: 21px;
-}
-
-.vehicle-card span {
-    color: #647a91;
-
-    font-size: 10px;
-}
-
-
-/* =====================================================
-   ROUTE
-===================================================== */
-
-.route-box {
-    padding: 18px;
-
-    background: #091524;
-
-    border: 1px solid #172c42;
-
-    border-radius: 9px;
-}
-
-.route-box > span {
-    display: block;
-
-    color: #627890;
-
-    font-size: 8px;
-
-    margin-bottom: 8px;
-}
-
-.route-box > strong {
-    display: block;
-
-    color: #b9d7f3;
-
-    font-size: 13px;
-
-    line-height: 1.7;
-}
-
-.route-stats {
-    display: grid;
-
-    grid-template-columns:
-        repeat(3, 1fr);
-
-    gap: 20px;
-
-    margin-top: 20px;
-
-    padding-top: 16px;
-
-    border-top: 1px solid #172c42;
-}
-
-.route-stats span {
-    display: block;
-
-    color: #60758c;
-
-    font-size: 8px;
-
-    margin-bottom: 5px;
-}
-
-.route-stats strong {
-    font-size: 14px;
-}
-
-
-/* =====================================================
-   TWO COLUMN
-===================================================== */
-
-.two-column {
-    display: grid;
-
-    grid-template-columns:
-        1fr 1fr;
-
-    gap: 17px;
-}
-
-.muted {
-    color: #637991;
-
-    font-size: 10px;
-
-    margin-top: 6px;
-}
-
-
-/* =====================================================
-   TRAFFIC BARS
-===================================================== */
-
-.traffic-bars {
+.traffic-ambulance {
     display: flex;
-
-    flex-direction: column;
-
-    gap: 18px;
-}
-
-.bar-item > div:first-child {
-    display: flex;
-
     justify-content: space-between;
 
+    padding: 13px;
+
+    border-bottom: 1px solid #203849;
+
+    color: #d8e3eb;
+}
+
+.traffic-ambulance.emergency {
+    color: #ff7777;
+}
+
+
+/* ================= SIGNAL ================= */
+
+.signal-card {
+    padding: 13px 0;
+    border-bottom: 1px solid #203849;
+}
+
+.signal-card > div:first-child {
+    display: flex;
+    justify-content: space-between;
+}
+
+.signal-card button {
+    border: none;
+    border-radius: 6px;
+    padding: 8px 12px;
+    background: #1683ff;
+    color: white;
+    font-weight: bold;
+}
+
+.signal-card button:last-child {
+    background: #4b5963;
+}
+
+
+/* ================= DRIVER ================= */
+
+.driver-info {
+    display: grid;
+    grid-template-columns:
+        repeat(auto-fit, minmax(160px, 1fr));
+
+    gap: 15px;
+}
+
+.driver-info > div {
+    padding: 18px;
+
+    background: #0b1c2a;
+
+    border: 1px solid #20425a;
+
+    border-radius: 12px;
+}
+
+.driver-info span {
+    display: block;
+    color: #7894a7;
+    font-size: 12px;
     margin-bottom: 7px;
 }
 
-.bar-item span {
-    color: #8ba0b5;
-
-    font-size: 10px;
+.driver-info strong {
+    font-size: 18px;
 }
 
-.bar-item strong {
-    font-size: 10px;
+.driver-badge {
+    padding: 10px 18px;
+    border-radius: 8px;
+    background: #123522;
+    color: #2cff9a;
+    font-weight: bold;
 }
 
-.bar {
-    height: 7px;
-
-    background: #15263a;
-
-    border-radius: 5px;
-
-    overflow: hidden;
-}
-
-.bar div {
-    height: 100%;
-
-    width: 0%;
-
-    background: #347eb5;
-
-    transition: width 0.3s ease;
+.driver-badge.emergency {
+    background: #391719;
+    color: #ff6868;
 }
 
 
-/* =====================================================
-   HOSPITAL
-===================================================== */
+/* ================= RESPONSIVE ================= */
 
-.hospital-route {
-    padding: 25px;
+@media (max-width: 1000px) {
 
-    background: #091524;
-
-    border: 1px solid #172c42;
-
-    border-radius: 9px;
-}
-
-.hospital-route strong {
-    color: #b8d5ef;
-
-    font-size: 14px;
-
-    line-height: 1.8;
-}
-
-.arrival-panel {
-    display: flex;
-
-    align-items: center;
-
-    justify-content: space-between;
-}
-
-.arrival-icon {
-    font-size: 42px;
-}
-
-
-/* =====================================================
-   SYSTEM
-===================================================== */
-
-.system-footer {
-    display: grid;
-
-    grid-template-columns:
-        repeat(4, 1fr);
-
-    gap: 10px;
-
-    margin-top: 10px;
-}
-
-.system-footer span {
-    padding: 12px;
-
-    background: #091524;
-
-    border: 1px solid #172c42;
-
-    border-radius: 7px;
-
-    color: #778ba0;
-
-    font-size: 9px;
-}
-
-.system-footer strong {
-    display: block;
-
-    color: #51d79d;
-
-    font-size: 8px;
-
-    margin-top: 5px;
-}
-
-footer {
-    text-align: center;
-
-    color: #40556b;
-
-    font-size: 9px;
-
-    padding: 20px;
-}
-
-
-/* =====================================================
-   RESPONSIVE
-===================================================== */
-
-@media (max-width: 1050px) {
-
-    .sidebar {
-        width: 205px;
+    .traffic-layout {
+        grid-template-columns: 1fr;
     }
 
-    .main-content {
-        margin-left: 205px;
-
-        width: calc(100% - 205px);
-
-        padding: 25px;
+    .traffic-right {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
     }
 
-    .stats-grid {
-        grid-template-columns:
-            repeat(2, 1fr);
-    }
-
-    .vehicle-grid {
-        grid-template-columns:
-            repeat(2, 1fr);
-    }
-
-    .system-footer {
-        grid-template-columns:
-            repeat(2, 1fr);
-    }
 }
 
 @media (max-width: 700px) {
 
-    .sidebar {
-        display: none;
-    }
-
-    .main-content {
-        margin-left: 0;
-
-        width: 100%;
-
+    .dashboard {
         padding: 18px;
     }
 
-    .stats-grid,
-    .vehicle-grid,
-    .two-column,
-    .system-footer {
-        grid-template-columns: 1fr;
-    }
-
-    .route-stats {
-        grid-template-columns: 1fr;
-    }
-
     .topbar {
-        align-items: flex-start;
-
-        gap: 15px;
-
-        flex-direction: column;
+        padding: 0 15px;
     }
+
+    .traffic-stats {
+        display: none;
+    }
+
+    .dashboard-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 15px;
+    }
+
+    .traffic-right {
+        grid-template-columns: 1fr;
+    }
+
+    .real-map {
+        height: 450px !important;
+        min-height: 450px !important;
+    }
+
 }

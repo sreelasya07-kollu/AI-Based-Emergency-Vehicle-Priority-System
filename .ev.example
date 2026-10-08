@@ -1,0 +1,10 @@
+GOOGLE_MAPS_API_KEY=YOUR_GOOGLE_MAPS_API_KEY
+
+AMBULANCE_MODEL_PATH=runs/detect/runs/ambulance_yolo11/weights/best.pt
+
+RESCUEROUTE_API=http://127.0.0.1:5050/api/camera-detection
+
+AMBULANCE_ID=AMB-102
+
+CAMERA_LAT=17.3850
+CAMERA_LON=78.4867

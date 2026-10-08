@@ -24,3 +24,10 @@ node_modules/
 
 # Temporary files
 *.tmp
+.env
+*.env
+*.pt
+runs/
+__pycache__/
+frontend/script.js.backup
+ai_models/

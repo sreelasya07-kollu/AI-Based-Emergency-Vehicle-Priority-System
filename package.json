@@ -7,5 +7,9 @@
     "demo": "python3 main.py demo",
     "train:emergency": "python3 ai_models/train_emergency.py",
     "train:vehicles": "python3 ai_models/train_vehicles.py"
+  },
+  "dependencies": {
+    "leaflet": "^1.9.4",
+    "react-leaflet": "^5.0.0"
   }
 }
